@@ -7,5 +7,13 @@
             <source>Enter all the requested data</source>
             <translation>Compila tutti i dati richiesti</translation>
         </message>
+        <message>
+            <source>Completion status of user profiles</source>
+            <translation>Stato di completamento dei profili utente</translation>
+        </message>
+        <message>
+            <source>Not enabled</source>
+            <translation>Non abilitato</translation>
+        </message>
     </context>
 </TS>
