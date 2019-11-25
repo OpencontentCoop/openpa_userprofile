@@ -64,7 +64,10 @@ class OpenPAUserProfileListener
                         $dataMap = $object->dataMap();
                         $preferenceValue = self::PROFILE_PREFERENCE_VALUE_OK;
                         foreach ($userProfileParameters->attribute('mandatory') as $identifier) {
-                            if (isset($dataMap[$identifier]) && !$dataMap[$identifier]->hasContent()) {
+                            if (isset($dataMap[$identifier])
+                                && $dataMap[$identifier]->attribute('data_type_string') !== 'ocrecaptcha'
+                                && !$dataMap[$identifier]->hasContent()
+                            ) {
                                 $preferenceValue = self::PROFILE_PREFERENCE_VALUE_KO;
                                 break;
                             }
@@ -88,8 +91,9 @@ class OpenPAUserProfileListener
                 );
                 eZPreferences::sessionCleanup();
             }
-            eZDebug::writeDebug($preferenceValue, __METHOD__);
         }
+
+        eZDebug::writeDebug($preferenceValue, __METHOD__);
 
         return $preferenceValue != self::PROFILE_PREFERENCE_VALUE_KO;
     }
