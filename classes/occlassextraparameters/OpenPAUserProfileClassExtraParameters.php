@@ -57,6 +57,10 @@ class OpenPAUserProfileClassExtraParameters extends OCClassExtraParametersHandle
             $attribute->store();
         }
 
+        $db = eZDB::instance();
+        $preferenceName = OpenPAUserProfileListener::PROFILE_PREFERENCE_KEY;
+        $db->query( "DELETE FROM ezpreferences WHERE name='$preferenceName'" );
+
         parent::storeParameters($data);
     }
 

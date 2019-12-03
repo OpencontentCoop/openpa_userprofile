@@ -10,7 +10,11 @@ class OpenPAUserProfileListener
 
     public static function onInput(eZURI $uri)
     {
-        if (($uri->URI == '' || $uri->URI == 'user/edit') && self::checkCurrentUserProfile() === false) {
+        if (($uri->URI == ''
+                || $uri->URI == 'user/edit'
+                || $uri->URI == eZINI::instance()->variable('SiteSettings', 'IndexPage')
+                || $uri->URI == eZINI::instance()->variable('SiteSettings', 'DefaultPage'))
+            && self::checkCurrentUserProfile() === false) {
             $name = self::PROFILE_PREFERENCE_KEY;
             $userId = eZUser::currentUserID();
             $query = "DELETE FROM ezpreferences WHERE name = '$name' AND user_id = $userId";
