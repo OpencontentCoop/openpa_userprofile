@@ -21,18 +21,14 @@
      $translation_list = $content_version.translation_list}
 
 <form class="Form Form--spaced {*u-layout-prose*} u-text-r-xs" enctype="multipart/form-data" method="post" action={concat("/content/edit/",$object.id,"/",$edit_version,"/",$edit_language|not|choose(concat($edit_language,"/"),''))|ezurl}>
-    {include uri='design:parts/website_toolbar_edit.tpl'}
-
-    <h2 class="u-text-h2">
-        <i class='icon-edit'></i>
-        <span>Modifica {$object.name|wash}</span>
-        <small>{$class.name|wash}</small>
-    </h2>
 
     {if ezhttp_hasvariable( 'openpauserprofile', 'get' )}
-        {set $validation = $validation|merge(hash('processed', true()))}
-        {set $validation = $validation|merge(hash('custom_rules', array(hash( text, "Enter all the requested data"|i18n("openpa_userprofile")))))}
+        <div class="alert alert-warning Prose Alert Alert--warning" role="alert">
+            <h2>{'Complete your profile'|i18n( 'openpa_userprofile' )}</h2>
+        </div>
     {/if}
+
+    <h2 class="u-text-h2">{$object.name|wash}</h2>
 
     {include uri="design:content/edit_validation.tpl"}
 

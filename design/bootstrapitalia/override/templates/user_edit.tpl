@@ -18,17 +18,14 @@
 
 <form class="edit" enctype="multipart/form-data" method="post" action={concat("/content/edit/",$object.id,"/",$edit_version,"/",$edit_language|not|choose(concat($edit_language,"/"),''))|ezurl}>
 
-    {include uri='design:parts/website_toolbar_edit.tpl'}
-    <div class="clearfix">
-        <h4 class="float-left">{if $edit_version|eq(1)}{"Create"|i18n( 'design/ocbootstrap/content/edit' )}{else}{"Edit"|i18n( 'design/ocbootstrap/content/edit' )}{/if} <span class="text-lowercase">{$class.name|wash}</span></h4>
-    </div>
+    {if ezhttp_hasvariable( 'openpauserprofile', 'get' )}
+        <div class="alert alert-warning">
+            <h2>{'Complete your profile'|i18n( 'openpa_userprofile' )}</h2>
+        </div>
+    {/if}
 
     <h1>{$object.name|wash}</h1>
 
-    {if ezhttp_hasvariable( 'openpauserprofile', 'get' )}
-        {set $validation = $validation|merge(hash('processed', true()))}
-        {set $validation = $validation|merge(hash('custom_rules', array(hash( text, "Enter all the requested data"|i18n("openpa_userprofile")))))}
-    {/if}
     {include uri="design:content/edit_validation.tpl"}
 
     <div class="mb-3">

@@ -15,5 +15,9 @@
             <source>Not enabled</source>
             <translation type="unfinished" />
         </message>
+        <message>
+            <source>Complete your profile</source>
+            <translation type="unfinished" />
+        </message>
     </context>
 </TS>

@@ -30,8 +30,9 @@
     </h2>
 
     {if ezhttp_hasvariable( 'openpauserprofile', 'get' )}
-        {set $validation = $validation|merge(hash('processed', true()))}
-        {set $validation = $validation|merge(hash('custom_rules', array(hash( text, "Enter all the requested data"|i18n("openpa_userprofile")))))}
+        <div class="message-error">
+        <h2>{'Complete your profile'|i18n( 'openpa_userprofile' )}</h2>
+    </div>
     {/if}
 
     {include uri="design:content/edit_validation.tpl"}

@@ -15,5 +15,9 @@
             <source>Not enabled</source>
             <translation>Non abilitato</translation>
         </message>
+        <message>
+            <source>Complete your profile</source>
+            <translation>Completa il tuo profilo</translation>
+        </message>
     </context>
 </TS>
