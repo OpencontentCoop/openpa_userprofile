@@ -1,13 +1,4 @@
-{def $_redirect = false()}
-{if ezhttp_hasvariable( 'RedirectURIAfterPublish', 'session' )}
-    {set $_redirect = ezhttp( 'RedirectURIAfterPublish', 'session' )}
-{elseif ezhttp_hasvariable( 'LastAccessesURI', 'session' )}
-    {set $_redirect = ezhttp( 'LastAccessesURI', 'session' )}
-{elseif $object.main_node_id}
-    {set $_redirect = concat( 'content/view/full/', $object.main_node_id )}
-{elseif ezhttp( 'url', 'get', true() )}
-    {set $_redirect = ezhttp( 'url', 'get' )}
-{/if}
+{def $_redirect = '/user/edit'}
 
 {def $tab = ''}
 {if and( ezhttp_hasvariable( 'tab', 'get' ), is_set( $view_parameters.tab )|not() )}
@@ -39,7 +30,7 @@
               <input class="btn btn-lg btn-success pull-right" type="submit" name="PublishButton" value="{'Store'|i18n('ocbootstrap')}" />
               <input class="btn btn-lg btn-dark" type="submit" name="DiscardButton" value="{'Discard'|i18n('ocbootstrap')}" />
               <input type="hidden" name="DiscardConfirm" value="0" />
-              <input type="hidden" name="RedirectIfDiscarded" value="{if ezhttp_hasvariable( 'RedirectIfDiscarded', 'session' )}{ezhttp( 'RedirectIfDiscarded', 'session' )}{else}{$_redirect}{/if}" />
+              <input type="hidden" name="RedirectIfDiscarded" value="{$_redirect}" />
               <input type="hidden" name="RedirectURIAfterPublish" value="{$_redirect}" />
           </div>
     </div>
