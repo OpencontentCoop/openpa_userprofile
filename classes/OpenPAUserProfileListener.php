@@ -76,6 +76,15 @@ class OpenPAUserProfileListener
                                 break;
                             }
                         }
+                        foreach ($userProfileParameters->attribute('recommended') as $identifier) {
+                            if (isset($dataMap[$identifier])
+                                && $dataMap[$identifier]->attribute('data_type_string') !== 'ocrecaptcha'
+                                && !$dataMap[$identifier]->hasContent()
+                            ) {
+                                $preferenceValue = self::PROFILE_PREFERENCE_VALUE_KO;
+                                break;
+                            }
+                        }
 
                     } else {
                         $preferenceValue = self::PROFILE_PREFERENCE_VALUE_INDETERMINATE;
