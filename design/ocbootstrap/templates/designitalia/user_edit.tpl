@@ -7,7 +7,7 @@
 {elseif $object.main_node_id}
     {set $_redirect = concat( 'content/view/full/', $object.main_node_id )}
 {elseif ezhttp( 'url', 'get', true() )}
-    {set $_redirect = ezhttp( 'url', 'get' )}
+    {set $_redirect = ezhttp( 'url', 'get' )|wash()}
 {/if}
 
 {def $tab = ''}
